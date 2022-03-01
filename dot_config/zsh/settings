@@ -1,0 +1,3 @@
+#!/usr/bin/env zsh
+
+CASE_SENSITIVE="false"

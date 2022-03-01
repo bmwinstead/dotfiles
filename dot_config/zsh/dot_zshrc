@@ -1,0 +1,32 @@
+ZDIR=${ZDOTDIR:-$HOME}
+source $ZDIR/aliases
+source $ZDIR/ssh-agent
+source $ZDIR/environment
+source $ZDIR/settings
+source $ZDIR/completions
+eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
+eval "$(fnm env)"
+
+# FZF
+[ -f ~/.config/fzf/.fzf.zsh ] && source ~/.config/fzf/.fzf.zsh
+
+# Brew ZSH completions
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+
+  autoload -Uz compinit
+  compinit
+fi
+
+# Set custom PATH folders
+path+=~/.local/bin
+
+# ZSH Opts
+setopt NO_CASE_GLOB
+setopt NO_CASE_MATCH
+setopt AUTO_CD
+
+
+# History
+HISTFILE=$ZDIR/.zsh_history

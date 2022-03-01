@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+if [ $(ps ax | grep "[s]sh-agent" | wc -l) -eq 0 ] ; then
+    eval `ssh-agent -s -P "/usr/local/lib/*,/usr/lib/*,/opt/homebrew/Cellar/yubico-piv-tool/*/lib/*.dylib"` > /dev/null
+    ssh-add -e /opt/homebrew/lib/libykcs11.dylib
+    ssh-add -s /opt/homebrew/lib/libykcs11.dylib -K
+fi

@@ -1,0 +1,25 @@
+#!/usr/bin/env zsh
+# General commands
+alias v=lvim
+alias m=minikube
+alias k=kubectl
+alias ls=exa
+alias g=git
+alias c=chezmoi
+
+# Git shortcuts b/c I type them a million times a day
+alias gst="git status"
+alias gco="git checkout"
+
+
+# brew
+function b {
+  local dump_commands=('install' 'uninstall') # Include all commands that should do a brew dump
+  local main_command="${1}"
+
+  brew ${@}
+
+  for command in "${dump_commands[@]}"; do
+    [[ "${command}" == "${main_command}" ]] && brew bundle dump --file="${HOME}/.Brewfile" --force
+  done
+}
