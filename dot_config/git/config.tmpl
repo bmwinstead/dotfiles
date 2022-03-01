@@ -1,0 +1,61 @@
+[alias]
+  l = log --pretty=oneline -n 20 --graph --abbrev-commit
+  s = status -s
+  d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+  aliases = config --get-regexp alias
+
+# Interactive rebase with the given number of latest commits.
+  reb = "!r() { git rebase -i HEAD~$1; }; r"
+
+# Remove branches that have already been merged with main.
+# a.k.a. ‘delete merged’
+  dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+
+[core]
+  excludesfile = ~/.gitignore
+
+[init]
+  defaultBranch = main
+
+[user]
+  name = Bryan Winstead
+  email = {{ .email }}
+  signingkey = DFE205C0FFB7308B9C693EE415647DE45D6831C0
+
+[pager]
+  diff = delta
+  log = delta
+  reflog = delta
+  show = delta
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  features = side-by-side line-numbers decorations
+  whitespace-error-style = 22 reverse
+  syntax-theme = Nord
+
+[delta "decorations"]
+  commit-decoration-style = bold yellow box ul
+  file-style = bold yellow ul
+  file-decoration-style = none
+
+[commit]
+  gpgsign = true
+
+[rebase]
+  autosquash = true
+  autostash = true
+
+[gpg]
+  program = gpg
+
+[fetch]
+  prune = true
+
+[pull]
+  rebase = true
+
+[merge]
+  autostash = true
