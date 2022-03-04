@@ -1,0 +1,24 @@
+{{- $computerName := output "scutil" "--get" "ComputerName" | trim -}}
+{{- $email := "" -}}
+{{- $gpgKey := "" -}}
+{{- $tanium := false -}}
+{{- $personal := false -}}
+{{- if eq $computerName "0xDEADBEEF" -}}
+{{-   $email = "bryan@winstead.io" -}}
+{{-   $gpgKey = "DFE205C0FFB7308B9C693EE415647DE45D6831C0" -}}
+{{-   $personal = true -}}
+{{- else if eq $computerName "MLHFJ94W4MGK" -}}
+{{-   $email = "bryan.winstead@tanium.com" -}}
+{{-   $gpgKey = "2980D37FB78E23A8" -}}
+{{-   $tanium = true -}}
+{{- else -}}
+{{-   $email = promptString "email" -}}
+{{-   $gpgKey = promptString "gpgKey" -}}
+{{-   $tanium = promptBool "tanium" -}}
+{{-   $personal = promptBool "personal" -}}
+{{ end -}}
+[data]
+  email = {{ $email | quote}}
+  gpgKey = {{ $gpgKey | quote }}
+  tanium = {{ $tanium }}
+  personal = {{ $personal }}
