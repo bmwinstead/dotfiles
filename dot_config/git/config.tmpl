@@ -20,7 +20,7 @@
 [user]
   name = Bryan Winstead
   email = {{ .email }}
-  signingkey = DFE205C0FFB7308B9C693EE415647DE45D6831C0
+  signingkey = {{ .gpgkey }}
 
 [pager]
   diff = delta
@@ -59,3 +59,10 @@
 
 [merge]
   autostash = true
+
+{{- if not .personal -}} {{/* Use personal settings for dotfiles repo */}}
+[includeIf "gitdir:**/chezmoi/*"]
+  path = ~/.config/git/personal
+{{- end -}}
+
+{{/* vim: set filetype=gitconfig: */}}
