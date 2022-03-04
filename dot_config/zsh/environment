@@ -1,2 +1,5 @@
+#!/usr/bin/env zsh
+
 export EDITOR=nvim
 export HOMEBREW_BREWFILE=~/.config/brew/Brewfile
+export GPG_TTY=`tty`

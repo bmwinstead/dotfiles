@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 ZDIR=${ZDOTDIR:-$HOME}
 source $ZDIR/aliases
 source $ZDIR/ssh-agent
