@@ -1,0 +1,4 @@
+IgnoreUnknown AddKeysToAgent,UseKeychain
+
+Host *
+  PKCS11Provider /opt/homebrew/lib/libykcs11.dylib
