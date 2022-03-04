@@ -60,6 +60,9 @@
 [merge]
   autostash = true
 
+[url "git@github.com:bmwinstead/"]
+	insteadOf = https://github.com/bmwinstead/
+
 {{- if not .personal -}} {{/* Use personal settings for dotfiles repo */}}
 [includeIf "gitdir:**/chezmoi/*"]
   path = ~/.config/git/personal
